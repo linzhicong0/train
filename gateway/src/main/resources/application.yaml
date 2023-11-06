@@ -1,0 +1,13 @@
+server:
+  port: 8000
+spring:
+  application:
+    name: Gateway
+  cloud:
+    gateway:
+      routes:
+        - id: member
+          uri: http://localhost:8001
+#          uri: lb://member
+          predicates:
+            - Path=/member/**
