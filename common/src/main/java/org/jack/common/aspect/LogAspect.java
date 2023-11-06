@@ -1,4 +1,4 @@
-package org.jack.train.member.aspect;
+package org.jack.common.aspect;
 
 import ch.qos.logback.core.testUtil.RandomUtil;
 import com.alibaba.fastjson.JSONObject;
@@ -25,7 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Component
 public class LogAspect {
     public LogAspect() {
-        System.out.println("Common LogAspect");
+        System.out.println("Common LogAspect1");
     }
 
     private final static Logger LOG = LoggerFactory.getLogger(LogAspect.class);
