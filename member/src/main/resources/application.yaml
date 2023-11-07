@@ -5,3 +5,13 @@ server:
 spring:
   application:
     name: Member-Service
+  datasource:
+    url: jdbc:mysql://rm-cn-g4t3gxwvm0003svo.rwlb.rds.aliyuncs.com:3306/train-member?characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Shanghai
+    username: train
+    password: Train12345678!
+    driver-class-name: com.mysql.cj.jdbc.Driver
+mybatis:
+  mapper-locations: classpath:/mapper/**/*.xml
+logging:
+  level:
+    org.jack.train.member.mapper: trace
