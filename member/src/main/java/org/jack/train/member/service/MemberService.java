@@ -3,6 +3,7 @@ package org.jack.train.member.service;
 import org.jack.train.member.domain.Member;
 import org.jack.train.member.domain.MemberExample;
 import org.jack.train.member.mapper.MemberMapper;
+import org.jack.train.member.request.MemberRegisterRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,9 @@ public class MemberService {
         return Math.toIntExact(memberMapper.countByExample(null));
     }
 
-    public long register(String mobile) {
+    public long register(MemberRegisterRequest request) {
+        String mobile = request.getMobile();
+
         // check if the mobile already existed
         var memberExample = new MemberExample();
         memberExample.createCriteria().andMobileEqualTo(mobile);
@@ -25,7 +28,6 @@ public class MemberService {
         if (memberMapper.countByExample(memberExample) > 0) {
             throw new RuntimeException("mobile already existed");
         }
-
 
         // not exist then create the user with mobile
         Member member = new Member();
