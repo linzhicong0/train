@@ -40,7 +40,7 @@ public class Response<T> {
     public static <T> Response<T> fail(String message) {
         return Response.<T>builder()
                 .success(false)
-                .message("fail")
+                .message(message)
                 .data(null)
                 .build();
     }

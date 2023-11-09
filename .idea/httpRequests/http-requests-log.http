@@ -10,6 +10,70 @@ Accept-Encoding: br,deflate,gzip,x-gzip
   "mobile":1234567
 }
 
+<> 2023-11-09T212418.200.json
+
+###
+
+POST http://localhost:8001/member/register
+Content-Type: application/json
+Accept: application/json
+Content-Length: 22
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "mobile":1234567
+}
+
+<> 2023-11-09T212331.200.json
+
+###
+
+POST http://localhost:8001/member/register
+Content-Type: application/json
+Accept: application/json
+Content-Length: 22
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "mobile":1234567
+}
+
+<> 2023-11-09T212327.200.json
+
+###
+
+POST http://localhost:8001/member/register
+Content-Type: application/json
+Accept: application/json
+Content-Length: 22
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "mobile":1234567
+}
+
+<> 2023-11-09T212323.200.json
+
+###
+
+POST http://localhost:8001/member/register
+Content-Type: application/json
+Accept: application/json
+Content-Length: 22
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "mobile":1234567
+}
+
 <> 2023-11-08T224233.200.json
 
 ###
