@@ -1,6 +1,102 @@
 POST http://localhost:8001/member/register
 Content-Type: application/json
 Accept: application/json
+Content-Length: 18
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "mobile": ""
+}
+
+<> 2023-11-09T222204.200.json
+
+###
+
+POST http://localhost:8001/member/register
+Content-Type: application/json
+Accept: application/json
+Content-Length: 18
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "mobile": ""
+}
+
+<> 2023-11-09T222119.200.json
+
+###
+
+POST http://localhost:8001/member/register
+Content-Type: application/json
+Accept: application/json
+Content-Length: 20
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "mobile": null
+}
+
+<> 2023-11-09T222005.200.json
+
+###
+
+POST http://localhost:8001/member/register
+Content-Type: application/json
+Accept: application/json
+Content-Length: 20
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "mobile": null
+}
+
+<> 2023-11-09T220940.200.json
+
+###
+
+POST http://localhost:8001/member/register
+Content-Type: application/json
+Accept: application/json
+Content-Length: 20
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "mobile": null
+}
+
+<> 2023-11-09T220930.200.json
+
+###
+
+POST http://localhost:8001/member/register
+Content-Type: application/json
+Accept: application/json
+Content-Length: 17
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "mobile":""
+}
+
+<> 2023-11-09T220922.200.json
+
+###
+
+POST http://localhost:8001/member/register
+Content-Type: application/json
+Accept: application/json
 Content-Length: 22
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)

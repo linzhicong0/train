@@ -1,5 +1,6 @@
 package org.jack.train.member.controller;
 
+import jakarta.validation.Valid;
 import org.jack.common.response.Response;
 import org.jack.train.member.request.MemberRegisterRequest;
 import org.jack.train.member.service.MemberService;
@@ -21,7 +22,11 @@ public class MemberController {
     }
 
     @PostMapping("/register")
-    public Response<Long> register(@RequestBody MemberRegisterRequest request) {
+    public Response<Long> register(
+            @RequestBody
+            @Valid
+            MemberRegisterRequest request
+    ) {
         return Response.success(memberService.register(request));
     }
 }
