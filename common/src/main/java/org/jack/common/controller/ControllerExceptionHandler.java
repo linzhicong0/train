@@ -22,7 +22,7 @@ public class ControllerExceptionHandler {
     @ExceptionHandler(value = BusinessException.class)
     @ResponseBody
     public Response businessExceptionHandler(BusinessException e) {
-        LOG.error("businessExceptionHandler", e);
+        LOG.error("business error: {}", e.getException().getDesc());
         return Response.fail(e.getException().getDesc());
 
     }

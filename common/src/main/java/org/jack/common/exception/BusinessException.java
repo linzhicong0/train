@@ -7,4 +7,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class BusinessException extends RuntimeException{
     private final BusinessExceptionEnum exception;
+
+    @Override
+    public synchronized Throwable fillInStackTrace() {
+        return this;
+    }
 }
