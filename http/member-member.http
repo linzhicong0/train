@@ -11,6 +11,6 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "mobile": ""
+  "mobile": "123456789"
 }
 ###
