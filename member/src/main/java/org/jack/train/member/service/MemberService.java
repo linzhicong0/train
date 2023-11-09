@@ -1,5 +1,7 @@
 package org.jack.train.member.service;
 
+import org.jack.common.exception.BusinessException;
+import org.jack.common.exception.BusinessExceptionEnum;
 import org.jack.train.member.domain.Member;
 import org.jack.train.member.domain.MemberExample;
 import org.jack.train.member.mapper.MemberMapper;
@@ -26,7 +28,8 @@ public class MemberService {
         memberExample.createCriteria().andMobileEqualTo(mobile);
 
         if (memberMapper.countByExample(memberExample) > 0) {
-            throw new RuntimeException("mobile already existed");
+//            throw new RuntimeException("mobile already existed");
+            throw new BusinessException(BusinessExceptionEnum.MEMBER_MOBILE_EXIST);
         }
 
         // not exist then create the user with mobile

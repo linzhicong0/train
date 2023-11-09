@@ -1,5 +1,6 @@
 package org.jack.common.controller;
 
+import org.jack.common.exception.BusinessException;
 import org.jack.common.response.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,8 +14,16 @@ public class ControllerExceptionHandler {
 
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
-    public Response exceptionHandler(Exception e) throws Exception {
+    public Response exceptionHandler(Exception e)  {
         LOG.error("exceptionHandler", e);
-        return Response.fail(e.getMessage());
+        return Response.fail("system error");
+    }
+
+    @ExceptionHandler(value = BusinessException.class)
+    @ResponseBody
+    public Response businessExceptionHandler(BusinessException e) {
+        LOG.error("businessExceptionHandler", e);
+        return Response.fail(e.getException().getDesc());
+
     }
 }
