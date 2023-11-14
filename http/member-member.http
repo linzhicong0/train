@@ -22,3 +22,12 @@ Accept: application/json
   "mobile": "12345678901"
 }
 ###
+POST http://localhost:8001/member/login
+Content-Type: application/json
+Accept: application/json
+
+{
+  "mobile": "12345678901",
+  "verificationCode": "8888"
+}
+###

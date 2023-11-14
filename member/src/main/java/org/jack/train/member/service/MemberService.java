@@ -1,5 +1,6 @@
 package org.jack.train.member.service;
 
+import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.RandomUtil;
 import org.jack.common.exception.BusinessException;
@@ -8,8 +9,10 @@ import org.jack.common.util.SnowFlakeUtil;
 import org.jack.train.member.domain.Member;
 import org.jack.train.member.domain.MemberExample;
 import org.jack.train.member.mapper.MemberMapper;
+import org.jack.train.member.request.MemberLoginReq;
 import org.jack.train.member.request.MemberRegisterRequest;
 import org.jack.train.member.request.MemberSendCodeReq;
+import org.jack.train.member.response.MemberLoginResp;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,9 +54,9 @@ public class MemberService {
         return member.getId();
     }
 
-    public void sendCode(MemberSendCodeReq req) {
+    public void sendCode(MemberSendCodeReq request) {
 
-        String mobile = req.getMobile();
+        String mobile = request.getMobile();
 
         // check if the mobile already existed
         var memberExample = new MemberExample();
@@ -65,7 +68,7 @@ public class MemberService {
             LOG.info("mobile does not exist, insert a record");
             Member member = new Member();
             member.setId(SnowFlakeUtil.getSnowFlakeId());
-            member.setMobile(req.getMobile());
+            member.setMobile(request.getMobile());
 
             memberMapper.insert(member);
         } else {
@@ -80,5 +83,38 @@ public class MemberService {
         //TODO: save the code: mobile, code, expired date, is verified, business type, send time, verified time
         //TODO: integrate with msg api
 
+    }
+
+
+    public MemberLoginResp login(MemberLoginReq request) {
+
+        String mobile = request.getMobile();
+
+        // check if the mobile already existed
+        var memberExample = new MemberExample();
+        memberExample.createCriteria().andMobileEqualTo(mobile);
+
+        List<Member> list = memberMapper.selectByExample(memberExample);
+
+        if (CollUtil.isEmpty(list)) {
+            throw new BusinessException(BusinessExceptionEnum.MEMBER_MOBILE_NOT_EXIST);
+        }
+
+        // create temporary code
+        String code = "8888";
+
+        // check the verification code
+        if (!request.getVerificationCode().equals(code)) {
+            throw new BusinessException(BusinessExceptionEnum.MEMBER_VERIFICATION_CODE_INCORRECT);
+        }
+
+        Member member = list.get(0);
+
+//        return MemberLoginResp.builder()
+//                .id(member.getId())
+//                .mobile(member.getMobile())
+//                .build();
+
+        return BeanUtil.copyProperties(member, MemberLoginResp.class);
     }
 }
