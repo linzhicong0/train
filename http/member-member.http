@@ -11,6 +11,14 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "mobile": "123456789"
+  "mobile": "1234567890"
+}
+###
+POST http://localhost:8001/member/sendCode
+Content-Type: application/json
+Accept: application/json
+
+{
+  "mobile": "12345678901"
 }
 ###

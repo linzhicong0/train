@@ -3,6 +3,7 @@ package org.jack.train.member.controller;
 import jakarta.validation.Valid;
 import org.jack.common.response.Response;
 import org.jack.train.member.request.MemberRegisterRequest;
+import org.jack.train.member.request.MemberSendCodeReq;
 import org.jack.train.member.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,5 +29,16 @@ public class MemberController {
             MemberRegisterRequest request
     ) {
         return Response.success(memberService.register(request));
+    }
+
+    @PostMapping("/sendCode")
+    public Response<Long> sendCode(
+            @RequestBody
+            @Valid
+            MemberSendCodeReq request
+    ) {
+
+        memberService.sendCode(request);
+        return Response.success();
     }
 }
