@@ -5,6 +5,7 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.RandomUtil;
 import org.jack.common.exception.BusinessException;
 import org.jack.common.exception.BusinessExceptionEnum;
+import org.jack.common.util.JWTUtil;
 import org.jack.common.util.SnowFlakeUtil;
 import org.jack.train.member.domain.Member;
 import org.jack.train.member.domain.MemberExample;
@@ -115,6 +116,12 @@ public class MemberService {
 //                .mobile(member.getMobile())
 //                .build();
 
-        return BeanUtil.copyProperties(member, MemberLoginResp.class);
+        var response = BeanUtil.copyProperties(member, MemberLoginResp.class);
+
+        String token = JWTUtil.createToken(member.getId(), member.getMobile());
+        response.setAccessToken(token);
+
+        return response;
+
     }
 }
