@@ -30,4 +30,11 @@ Accept: application/json
   "mobile": "12345678901",
   "verificationCode": "8888"
 }
+
+
+> {%
+client.log(JSON.stringify(response.body));
+client.log(JSON.stringify(response.body.data.accessToken));
+client.global.set("token", response.body.data.accessToken);
+%}
 ###

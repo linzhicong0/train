@@ -1,0 +1,23 @@
+POST http://localhost:8001/member/passenger/save
+Content-Type: application/json
+Accept: application/json
+
+{
+  "memberId": "123",
+  "name": "zhangsan",
+  "idCard": "123444",
+  "type": "1"
+}
+###
+POST http://localhost:8000/member/passenger/save
+Content-Type: application/json
+Accept: application/json
+Authorization: {{token}}
+
+{
+  "memberId": "1234",
+  "name": "zhangsa4n",
+  "idCard": "1234444",
+  "type": "1"
+}
+###

@@ -2,6 +2,7 @@ package org.jack.common.util;
 
 import cn.hutool.core.date.DateField;
 import cn.hutool.core.date.DateTime;
+import cn.hutool.crypto.GlobalBouncyCastleProvider;
 import cn.hutool.json.JSONObject;
 import cn.hutool.jwt.JWT;
 import cn.hutool.jwt.JWTPayload;
@@ -18,8 +19,10 @@ public class JWTUtil {
 
     public static String createToken(Long id, String mobile) {
 
+        GlobalBouncyCastleProvider.setUseBouncyCastle(false);
+
         DateTime now = DateTime.now();
-        DateTime expiredTime = now.offset(DateField.HOUR, 1);
+        DateTime expiredTime = now.offsetNew(DateField.HOUR, 24);
 
         Map<String, Object> payload = new HashMap<>();
         payload.put("id", id);
@@ -38,6 +41,8 @@ public class JWTUtil {
 
 
     public static boolean validate(String token) {
+
+        GlobalBouncyCastleProvider.setUseBouncyCastle(false);
 
         JWT jwt = cn.hutool.jwt.JWTUtil.parseToken(token).setKey(KEY.getBytes());
 
