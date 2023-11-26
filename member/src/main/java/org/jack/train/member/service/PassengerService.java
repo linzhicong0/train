@@ -6,9 +6,14 @@ import jakarta.annotation.Resource;
 import org.jack.common.context.LoginMemberContext;
 import org.jack.common.util.SnowFlakeUtil;
 import org.jack.train.member.domain.Passenger;
+import org.jack.train.member.domain.PassengerExample;
 import org.jack.train.member.mapper.PassengerMapper;
+import org.jack.train.member.request.PassengerQueryRequest;
 import org.jack.train.member.request.PassengerSaveRequest;
+import org.jack.train.member.response.PassengerQueryResp;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class PassengerService {
@@ -28,7 +33,14 @@ public class PassengerService {
         passenger.setMemberId(LoginMemberContext.getId());
 
         passengerMapper.insert(passenger);
+    }
 
 
+    public List<PassengerQueryResp> getList(PassengerQueryRequest request) {
+        PassengerExample pe = new PassengerExample();
+        pe.createCriteria().andMemberIdEqualTo(request.getMemberId());
+        List<Passenger> passengers = passengerMapper.selectByExample(pe);
+
+        return BeanUtil.copyToList(passengers, PassengerQueryResp.class);
     }
 }
