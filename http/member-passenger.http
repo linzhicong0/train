@@ -15,7 +15,6 @@ Accept: application/json
 Authorization: {{token}}
 
 {
-  "memberId": "1234",
   "name": "zhangsa4n",
   "idCard": "1234444",
   "type": "1"

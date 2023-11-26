@@ -3,6 +3,7 @@ package org.jack.train.member.service;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.date.DateTime;
 import jakarta.annotation.Resource;
+import org.jack.common.context.LoginMemberContext;
 import org.jack.common.util.SnowFlakeUtil;
 import org.jack.train.member.domain.Passenger;
 import org.jack.train.member.mapper.PassengerMapper;
@@ -23,6 +24,8 @@ public class PassengerService {
         DateTime now = DateTime.now();
         passenger.setCreateTime(now);
         passenger.setUpdateTime(now);
+
+        passenger.setMemberId(LoginMemberContext.getId());
 
         passengerMapper.insert(passenger);
 
