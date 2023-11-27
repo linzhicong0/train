@@ -5,6 +5,7 @@ import jakarta.validation.Valid;
 import org.jack.common.context.LoginMemberContext;
 import org.jack.common.response.PaginationResponse;
 import org.jack.common.response.Response;
+import org.jack.train.member.request.PassengerDeleteRequest;
 import org.jack.train.member.request.PassengerQueryRequest;
 import org.jack.train.member.request.PassengerSaveRequest;
 import org.jack.train.member.request.PassengerUpdateRequest;
@@ -36,13 +37,20 @@ public class PassengerController {
         return Response.success();
 
     }
-
-
     @GetMapping("/list")
     public Response<PaginationResponse<PassengerQueryResp>> getList(@Valid PassengerQueryRequest request) {
 
         request.setMemberId(LoginMemberContext.getId());
 
         return Response.success(passengerService.getList(request));
+    }
+
+    @DeleteMapping
+    public Response delete(@Valid PassengerDeleteRequest request) {
+
+        passengerService.delete(request);
+
+        return Response.success();
+
     }
 }

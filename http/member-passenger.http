@@ -40,5 +40,10 @@ Authorization: {{token}}
   "idCard": "1234444",
   "type": "1"
 }
-
+###
+###
+DELETE http://localhost:8000/member/passenger?id=1728684954482774016
+Content-Type: application/json
+Accept: application/json
+Authorization: {{token}}
 ###

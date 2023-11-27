@@ -11,6 +11,7 @@ import org.jack.common.util.SnowFlakeUtil;
 import org.jack.train.member.domain.Passenger;
 import org.jack.train.member.domain.PassengerExample;
 import org.jack.train.member.mapper.PassengerMapper;
+import org.jack.train.member.request.PassengerDeleteRequest;
 import org.jack.train.member.request.PassengerQueryRequest;
 import org.jack.train.member.request.PassengerSaveRequest;
 import org.jack.train.member.request.PassengerUpdateRequest;
@@ -67,5 +68,20 @@ public class PassengerService {
         response.setPageSize(pageInfo.getPageSize());
 
          return response;
+    }
+
+    public void delete(PassengerDeleteRequest request) {
+        // check if the id of passenger exist
+
+        PassengerExample ex = new PassengerExample();
+        ex.createCriteria().andIdEqualTo(Long.parseLong( request.getId()));
+
+        if(passengerMapper.countByExample(ex) == 1) {
+            passengerMapper.deleteByPrimaryKey(Long.parseLong(request.getId()));
+        }
+
+
+
+
     }
 }
