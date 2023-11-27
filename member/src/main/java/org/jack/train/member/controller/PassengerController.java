@@ -3,14 +3,13 @@ package org.jack.train.member.controller;
 import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
 import org.jack.common.context.LoginMemberContext;
+import org.jack.common.response.PaginationResponse;
 import org.jack.common.response.Response;
 import org.jack.train.member.request.PassengerQueryRequest;
 import org.jack.train.member.request.PassengerSaveRequest;
 import org.jack.train.member.response.PassengerQueryResp;
 import org.jack.train.member.service.PassengerService;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/passenger")
@@ -28,12 +27,9 @@ public class PassengerController {
 
     }
     @GetMapping("/list")
-    public Response<List<PassengerQueryResp>> getList() {
+    public Response<PaginationResponse<PassengerQueryResp>> getList(@Valid PassengerQueryRequest request) {
 
-        PassengerQueryRequest request = PassengerQueryRequest
-                .builder()
-                .memberId(LoginMemberContext.getId())
-                .build();
+        request.setMemberId(LoginMemberContext.getId());
 
         return Response.success(passengerService.getList(request));
     }

@@ -2,8 +2,11 @@ package org.jack.train.member.service;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.date.DateTime;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import jakarta.annotation.Resource;
 import org.jack.common.context.LoginMemberContext;
+import org.jack.common.response.PaginationResponse;
 import org.jack.common.util.SnowFlakeUtil;
 import org.jack.train.member.domain.Passenger;
 import org.jack.train.member.domain.PassengerExample;
@@ -36,11 +39,22 @@ public class PassengerService {
     }
 
 
-    public List<PassengerQueryResp> getList(PassengerQueryRequest request) {
+    public PaginationResponse<PassengerQueryResp> getList(PassengerQueryRequest request) {
         PassengerExample pe = new PassengerExample();
         pe.createCriteria().andMemberIdEqualTo(request.getMemberId());
-        List<Passenger> passengers = passengerMapper.selectByExample(pe);
 
-        return BeanUtil.copyToList(passengers, PassengerQueryResp.class);
+        PageHelper.startPage(request.getPageNo(), request.getPageSize());
+        List<Passenger> passengers = passengerMapper.selectByExample(pe);
+        PageInfo<Passenger> pageInfo = new PageInfo<>(passengers);
+
+        var list = BeanUtil.copyToList(passengers, PassengerQueryResp.class);
+
+        PaginationResponse<PassengerQueryResp> response = new PaginationResponse<>();
+        response.setTotal(pageInfo.getTotal());
+        response.setList(list);
+        response.setPageNo(pageInfo.getPageNum());
+        response.setPageSize(pageInfo.getPageSize());
+
+         return response;
     }
 }
