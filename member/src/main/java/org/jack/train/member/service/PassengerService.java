@@ -13,6 +13,7 @@ import org.jack.train.member.domain.PassengerExample;
 import org.jack.train.member.mapper.PassengerMapper;
 import org.jack.train.member.request.PassengerQueryRequest;
 import org.jack.train.member.request.PassengerSaveRequest;
+import org.jack.train.member.request.PassengerUpdateRequest;
 import org.jack.train.member.response.PassengerQueryResp;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +39,16 @@ public class PassengerService {
         passengerMapper.insert(passenger);
     }
 
+
+    public void update(PassengerUpdateRequest request) {
+
+        Passenger passenger = BeanUtil.copyProperties(request, Passenger.class);
+
+        DateTime now = DateTime.now();
+        passenger.setUpdateTime(now);
+
+        passengerMapper.updateByPrimaryKey(passenger);
+    }
 
     public PaginationResponse<PassengerQueryResp> getList(PassengerQueryRequest request) {
         PassengerExample pe = new PassengerExample();

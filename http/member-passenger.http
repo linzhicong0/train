@@ -27,3 +27,18 @@ Accept: application/json
 Authorization: {{token}}
 
 ###
+###
+PUT http://localhost:8000/member/passenger/save
+Content-Type: application/json
+Accept: application/json
+Authorization: {{token}}
+
+{
+  "id": "1728682522352685056",
+  "memberId": "1724348987919699968",
+  "name": "zhangsan",
+  "idCard": "1234444",
+  "type": "1"
+}
+
+###
