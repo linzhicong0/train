@@ -11,12 +11,15 @@ spring:
             allowedOrigins: "*"
             allowedHeaders: "*"
             allowedMethods: "*"
-
       routes:
         - id: member
           uri: http://localhost:8001
 #          uri: lb://member
           predicates:
             - Path=/member/**
+        - id: business
+          uri: http://localhost:8002
+          predicates:
+            - Path=/business/**
 
 
