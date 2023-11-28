@@ -1,4 +1,4 @@
-package org.jack;
+package org.jack.train.business;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
